@@ -1,9 +1,29 @@
+:root {
+    --fundo: #e8e8b1;
+    --cor-fonte: #737373;
+}
+
 /* Zera as margens padrão do navegador e garante que a tela ocupe 100% da altura */
 body, html {
     margin: 0;
     padding: 0;
     height: 100%;
     font-family: system-ui, -apple-system, sans-serif; /* Fonte mais limpa */
+    background-color: var(--fundo);
+}
+
+header {
+    background-color: var(--fundo);
+    z-index: 100;
+    box-shadow: 0px 2px 10px rgba(0, 0, 0, 0.20);
+    padding: 15px;
+}
+
+/* Estilização para icons */
+.icon {
+    height: 25px;
+    width: 25px;
+    color: white;
 }
 
 /* O container principal que segura o Menu e o Conteúdo */
@@ -12,27 +32,38 @@ body, html {
     height: 100vh; /* Trava a altura em 100% da tela visível (Viewport Height) */
 }
 
+
+/* O Conteúdo das Páginas (Dashboard, Tarefas, etc) */
+.conteudo-principal {
+    margin-top: 8px;
+    flex: 1; /* Diz para o conteúdo ocupar todo o espaço restante que sobrou da tela */
+    padding: 10px;
+    background-color: var(--fundo);
+    
+    /* A MÁGICA ACONTECE AQUI:
+    Se o conteúdo for longo, a barra de rolagem aparece apenas nesta área! */
+    overflow-y: auto; 
+}
+
+.conteudo-principal h2 {
+    color: var(--cor-fonte);
+    border-bottom: 1px solid #bababa;
+    font-size: 32px;
+    max-width: 290px;
+}
+
 /* O seu Menu Lateral */
 .menu-lateral {
     width: 260px; /* Largura fixa do menu */
-    background-color: #f8f9fa; /* Um cinza bem claro para destacar */
+    background-color: var(--fundo);
     padding: 20px;
     box-sizing: border-box;
     border-right: 1px solid #ddd;
     
     /* Se o menu tiver muitos itens, apenas ELE rola, sem afetar o resto */
     overflow-y: auto; 
-}
-
-/* O Conteúdo das Páginas (Dashboard, Tarefas, etc) */
-.conteudo-principal {
-    flex: 1; /* Diz para o conteúdo ocupar todo o espaço restante que sobrou da tela */
-    padding: 30px;
-    background-color: #ffffff;
-    
-    /* A MÁGICA ACONTECE AQUI:
-       Se o conteúdo for longo, a barra de rolagem aparece apenas nesta área! */
-    overflow-y: auto; 
+    margin-right: 25px;
+    box-shadow: 5px 0 5px rgba(0, 0, 0, 0.20);
 }
 
 /* Um pequeno ajuste para os links do menu não ficarem feios */
@@ -43,11 +74,18 @@ body, html {
 
 .menu-lateral li {
     margin-bottom: 15px;
+    display: flex;
 }
 
 .menu-lateral a {
     text-decoration: none; /* Tira o sublinhado */
-    color: #333;
+    color: var(--cor-fonte);
+    
+}
+
+.menu-lateral a:hover {
+    transition: .2s;
+    color: black;
 }
 
 /* Estilizando o container do calendário */

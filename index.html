@@ -11,13 +11,13 @@
 
     <header>
         <h1>Family Hub</h1>
-        <hr>
     </header>
 
-    <div id="container" style="display: flex;">
-        <aside>
+    <div id="layout-principal" style="display: flex;">
+
+        <!-- Menu lateral -->
+        <aside class="menu-lateral">
             <nav>
-                <h3>Menu de Navegação</h3>
                 <ul>
                     <li><img class="icon" src="/assets/icons/house-solid-full.svg" alt="#"><a
                             href="/index.html">Dashboard</a></li>
@@ -38,10 +38,10 @@
             </nav>
         </aside>
 
-        <div style="border-left: 2px solid #000; margin: 0 20px;"></div>
+        <!-- <div style="border-left: 2px solid #000; margin: 0 20px;"></div> -->
 
-        <main>
-            <h2>Dashboard Principal</h2>
+        <main class="conteudo-principal">
+            <h2>Resumo de tarefas</h2>
 
             <section>
                 <img class="icon" src="/assets/icons/map-pin-solid-full.svg" alt="#">
@@ -97,8 +97,7 @@
         </main>
     </div>
 
-    <footer>
-        <hr>
+    <footer >
         <p><small>Family Hub v1.0 - 2026</small></p>
     </footer>
     <script src="../js/main.js"></script>
