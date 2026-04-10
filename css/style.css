@@ -49,3 +49,20 @@ body, html {
     text-decoration: none; /* Tira o sublinhado */
     color: #333;
 }
+
+/* Estilizando o container do calendário */
+#calendario-familia {
+    max-width: 1000px;
+    margin: 20px auto;
+    padding: 20px;
+    background-color: #ffffff;
+    border: 1px solid #e0e0e0;
+    border-radius: 8px;
+    box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+}
+
+/* Deixando os links do cabeçalho do calendário sem sublinhado */
+.fc a {
+    text-decoration: none;
+    color: #333;
+}
