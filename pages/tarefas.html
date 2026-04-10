@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Family Hub - Gerenciar Tarefas</title>
+    <link rel="stylesheet" href="/css/style.css">
+</head>
+
+<body>
+        <aside>
+            <nav>
+                <h3>Menu de Navegação</h3>
+                <ul>
+                    <li><a href="/index.html">📱 Dashboard</a></li>
+                    <li><a href="/pages/tarefas.html">📋 Gerenciar Tarefas</a></li>
+                    <li><a href="/pages/membros.html">👥 Membros da Família</a></li>
+                    <li><a href="/pages/relatorios.html">📊 Relatórios e Análises</a></li>
+                    <li><a href="/pages/configurações.html">⚙️ Configurações</a></li>
+                </ul>
+                <br>
+                <hr>
+                <ul>
+                    <li><a href="login.html">🚪 Sair</a></li>
+                </ul>
+            </nav>
+        </aside>
+    <main>
+        <h2>Gerenciamento de Tarefas</h2>
+    </main>
+    <h2>Gerenciamento de Tarefas</h2>
+
+    <fieldset>
+        <legend>Criar Nova Tarefa</legend>
+        <form>
+            <label>Título: <input type="text" placeholder="Ex: Lavar o carro"></label><br><br>
+
+            <label>Atribuir a:
+                <select>
+                    <option>Pai</option>
+                    <option>Mãe</option>
+                    <option>Filho 1</option>
+                </select>
+            </label><br><br>
+
+            <label>Categoria/Tag:
+                <input type="text" list="tags" placeholder="Cozinha, Pets, Limpeza...">
+                <datalist id="tags">
+                    <option value="Cozinha">
+                    <option value="Jardim">
+                    <option value="Compras">
+                </datalist>
+            </label><br><br>
+
+            <label>Prazo: <input type="date"></label><br><br>
+
+            <button type="submit">Adicionar Tarefa</button>
+        </form>
+    </fieldset>
+
+    <hr>
+
+    <h3>Lista de Tarefas Ativas</h3>
+    <table border="1">
+        <thead>
+            <tr>
+                <th>Status</th>
+                <th>Tarefa</th>
+                <th>Responsável</th>
+                <th>Tag</th>
+                <th>Ações</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td><input type="checkbox"></td>
+                <td>Comprar pão</td>
+                <td>Pai</td>
+                <td>Compras</td>
+                <td><button>Editar</button> <button>Excluir</button></td>
+            </tr>
+            <tr>
+                <td><input type="checkbox" checked></td>
+                <td><strike>Levar o lixo</strike></td>
+                <td>Filho 1</td>
+                <td>Limpeza</td>
+                <td><button>Reabrir</button></td>
+            </tr>
+        </tbody>
+    </table>
+</body>
+
+</html>

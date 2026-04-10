@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Family Hub - Dashboard</title>
+    <link rel="stylesheet" href="css/style.css">
+</head>
+
+<body>
+
+    <header>
+        <h1>Family Hub 🏠</h1>
+        <hr>
+    </header>
+
+    <div id="container" style="display: flex;">
+        <aside>
+            <nav>
+                <h3>Menu de Navegação</h3>
+                <ul>
+                    <li><a href="/index.html">📱 Dashboard</a></li>
+                    <li><a href="/pages/tarefas.html">📋 Gerenciar Tarefas</a></li>
+                    <li><a href="/pages/membros.html">👥 Membros da Família</a></li>
+                    <li><a href="/pages/relatorios.html">📊 Relatórios e Análises</a></li>
+                    <li><a href="pages/configurações.html">⚙️ Configurações</a></li>
+                </ul>
+                <br>
+                <hr>
+                <ul>
+                    <li><a href="login.html">🚪 Sair</a></li>
+                </ul>
+            </nav>
+        </aside>
+
+        <div style="border-left: 2px solid #000; margin: 0 20px;"></div>
+
+        <main>
+            <h2>Dashboard Principal</h2>
+
+            <section>
+                <h3>📌 Resumo de Hoje</h3>
+                <ul>
+                    <li>Tarefas pendentes: <strong>5</strong></li>
+                    <li>Tarefas concluídas: <strong>2</strong></li>
+                    <li>Alertas de atraso: <font color="red"><strong>1</strong></font>
+                    </li>
+                </ul>
+            </section>
+
+            <section>
+                <h3>👥 Status da Família</h3>
+                <table border="1">
+                    <thead>
+                        <tr>
+                            <th>Membro</th>
+                            <th>Cargo</th>
+                            <th>Status de Carga</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>Pai</td>
+                            <td>Admin</td>
+                            <td>Ocupado (3 tarefas)</td>
+                        </tr>
+                        <tr>
+                            <td>Filho 1</td>
+                            <td>Membro</td>
+                            <td>Livre</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </section>
+
+            <section>
+                <h3>🔔 Últimas Notificações</h3>
+                <ul>
+                    <li><em>"Lavar louça"</em> foi atribuída a você por <strong>Mãe</strong>.</li>
+                    <li><strong>Pai</strong> concluiu a tarefa <em>"Supermercado"</em>.</li>
+                </ul>
+            </section>
+
+            <section>
+                <h3>📈 Meta Semanal</h3>
+                <progress value="60" max="100"></progress> 60% concluído
+            </section>
+        </main>
+    </div>
+
+    <footer>
+        <hr>
+        <p><small>Family Hub v1.0 - 2026</small></p>
+    </footer>
+
+</body>
+
+</html>

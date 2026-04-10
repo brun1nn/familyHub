@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Family Hub - Configurações</title>
+    <link rel="stylesheet" href="/css/style.css">
+</head>
+<body>
+
+    <div id="container" class="layout-principal">
+        
+        <aside>
+            <nav>
+                <h3>Menu de Navegação</h3>
+                <ul>
+                    <li><a href="/index.html">📱 Dashboard</a></li>
+                    <li><a href="/pages/tarefas.html">📋 Gerenciar Tarefas</a></li>
+                    <li><a href="/pages/membros.html">👥 Membros da Família</a></li>
+                    <li><a href="/pages/relatorios.html">📊 Relatórios e Análises</a></li>
+                    <li><a href="/pages/configurações.html">⚙️ Configurações</a></li>
+                </ul>
+                <br>
+                <hr>
+                <ul>
+                    <li><a href="login.html">🚪 Sair</a></li>
+                </ul>
+            </nav>
+        </aside>
+
+        <main class="conteudo-principal">
+            <header>
+                <h1>Configurações do Sistema</h1>
+                <p>Gerencie suas preferências pessoais e as regras do Family Hub.</p>
+            </header>
+            
+            <hr>
+
+            <section class="config-secao">
+                <h2>👤 Meu Perfil</h2>
+                <form action="#" method="POST">
+                    <fieldset>
+                        <legend>Dados Pessoais</legend>
+                        <label for="nome">Nome de Exibição:</label>
+                        <input type="text" id="nome" name="nome" value="Pai" required><br><br>
+
+                        <label for="email">E-mail de Login:</label>
+                        <input type="email" id="email" name="email" value="pai@email.com" required><br><br>
+
+                        <label for="senha">Nova Senha:</label>
+                        <input type="password" id="senha" name="senha" placeholder="Deixe em branco para manter"><br><br>
+
+                        <button type="submit">Salvar Perfil</button>
+                    </fieldset>
+                </form>
+            </section>
+
+            <hr>
+
+            <section class="config-secao">
+                <h2>🔔 Notificações e Lembretes</h2>
+                <form action="#" method="POST">
+                    <fieldset>
+                        <legend>Como você deseja ser avisado?</legend>
+                        
+                        <label>
+                            <input type="checkbox" name="notif_email" checked> 
+                            Receber resumo diário por e-mail
+                        </label><br>
+                        
+                        <label>
+                            <input type="checkbox" name="notif_atraso" checked> 
+                            Avisos de tarefas atrasadas
+                        </label><br>
+                        
+                        <label>
+                            <input type="checkbox" name="notif_nova_tarefa" checked> 
+                            Sempre que uma tarefa for atribuída a mim
+                        </label><br><br>
+
+                        <button type="submit">Salvar Preferências</button>
+                    </fieldset>
+                </form>
+            </section>
+
+            <hr>
+
+            <section class="config-secao">
+                <h2>🏠 Dados da Família (Admin)</h2>
+                <form action="#" method="POST">
+                    <fieldset>
+                        <legend>Identificação e Regras</legend>
+                        
+                        <label for="nome_familia">Nome da Família:</label>
+                        <input type="text" id="nome_familia" name="nome_familia" value="Família Silva"><br><br>
+
+                        <label for="fuso_horario">Fuso Horário (para os prazos):</label>
+                        <select id="fuso_horario" name="fuso_horario">
+                            <option value="America/Sao_Paulo" selected>Horário de Brasília (UTC-3)</option>
+                            <option value="America/Manaus">Manaus (UTC-4)</option>
+                        </select><br><br>
+
+                        <button type="submit">Atualizar Família</button>
+                    </fieldset>
+                </form>
+            </section>
+
+            <hr>
+
+            <section class="config-secao">
+                <h2>🎨 Aparência do Sistema</h2>
+                <form action="#" method="POST">
+                    <fieldset>
+                        <legend>Tema Visual</legend>
+                        <label>
+                            <input type="radio" name="tema" value="claro" checked> Tema Claro ☀️
+                        </label>
+                        <label>
+                            <input type="radio" name="tema" value="escuro"> Tema Escuro 🌙
+                        </label><br><br>
+
+                        <button type="submit">Aplicar Tema</button>
+                    </fieldset>
+                </form>
+            </section>
+
+            <hr>
+
+            <section class="config-secao" style="border: 1px solid red; padding: 10px;">
+                <h2 style="color: red;">⚠️ Zona de Perigo</h2>
+                <p>Ações irreversíveis para a sua conta.</p>
+                <button type="button" style="color: red;">Apagar Minha Conta e Dados</button>
+            </section>
+
+        </main>
+    </div>
+
+    <script src="../js/main.js"></script>
+</body>
+</html>

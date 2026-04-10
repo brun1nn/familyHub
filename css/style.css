@@ -1,0 +1,51 @@
+/* Zera as margens padrão do navegador e garante que a tela ocupe 100% da altura */
+body, html {
+    margin: 0;
+    padding: 0;
+    height: 100%;
+    font-family: system-ui, -apple-system, sans-serif; /* Fonte mais limpa */
+}
+
+/* O container principal que segura o Menu e o Conteúdo */
+.layout-principal {
+    display: flex; /* Coloca os elementos lado a lado */
+    height: 100vh; /* Trava a altura em 100% da tela visível (Viewport Height) */
+}
+
+/* O seu Menu Lateral */
+.menu-lateral {
+    width: 260px; /* Largura fixa do menu */
+    background-color: #f8f9fa; /* Um cinza bem claro para destacar */
+    padding: 20px;
+    box-sizing: border-box;
+    border-right: 1px solid #ddd;
+    
+    /* Se o menu tiver muitos itens, apenas ELE rola, sem afetar o resto */
+    overflow-y: auto; 
+}
+
+/* O Conteúdo das Páginas (Dashboard, Tarefas, etc) */
+.conteudo-principal {
+    flex: 1; /* Diz para o conteúdo ocupar todo o espaço restante que sobrou da tela */
+    padding: 30px;
+    background-color: #ffffff;
+    
+    /* A MÁGICA ACONTECE AQUI:
+       Se o conteúdo for longo, a barra de rolagem aparece apenas nesta área! */
+    overflow-y: auto; 
+}
+
+/* Um pequeno ajuste para os links do menu não ficarem feios */
+.menu-lateral ul {
+    list-style-type: none; /* Tira as bolinhas da lista */
+    padding: 0;
+}
+
+.menu-lateral li {
+    margin-bottom: 15px;
+}
+
+.menu-lateral a {
+    text-decoration: none; /* Tira o sublinhado */
+    color: #333;
+}
