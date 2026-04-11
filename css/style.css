@@ -1,106 +1,200 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&display=swap');
+
 :root {
-    --fundo: #e8e8b1;
-    --cor-fonte: #737373;
+    --bg-main: #121212;
+    --bg-panel: #1c1c1c;
+    --bg-hover: #2e2e2e;
+    --border-color: #2e2e2e;
+    --text-primary: #ededed;
+    --text-secondary: #a1a1a1;
+    --accent-color: #24b47e;
+    --danger-color: #f56565;
 }
 
-/* Zera as margens padrão do navegador e garante que a tela ocupe 100% da altura */
 body, html {
     margin: 0;
     padding: 0;
     height: 100%;
-    font-family: system-ui, -apple-system, sans-serif; /* Fonte mais limpa */
-    background-color: var(--fundo);
+    font-family: 'Inter', system-ui, -apple-system, sans-serif;
+    background-color: var(--bg-main);
+    color: var(--text-primary);
 }
 
 header {
-    background-color: var(--fundo);
-    z-index: 100;
-    box-shadow: 0px 2px 10px rgba(0, 0, 0, 0.20);
-    padding: 15px;
+    display: none;
 }
 
-/* Estilização para icons */
-.icon {
-    height: 25px;
-    width: 25px;
-    color: white;
-}
-
-/* O container principal que segura o Menu e o Conteúdo */
 .layout-principal {
-    display: flex; /* Coloca os elementos lado a lado */
-    height: 100vh; /* Trava a altura em 100% da tela visível (Viewport Height) */
+    display: flex;
+    height: 100vh;
+    overflow: hidden;
 }
 
-
-/* O Conteúdo das Páginas (Dashboard, Tarefas, etc) */
-.conteudo-principal {
-    margin-top: 8px;
-    flex: 1; /* Diz para o conteúdo ocupar todo o espaço restante que sobrou da tela */
-    padding: 10px;
-    background-color: var(--fundo);
-    
-    /* A MÁGICA ACONTECE AQUI:
-    Se o conteúdo for longo, a barra de rolagem aparece apenas nesta área! */
-    overflow-y: auto; 
-}
-
-.conteudo-principal h2 {
-    color: var(--cor-fonte);
-    border-bottom: 1px solid #bababa;
-    font-size: 32px;
-    max-width: 290px;
-}
-
-/* O seu Menu Lateral */
+/* Sidebar */
 .menu-lateral {
-    width: 260px; /* Largura fixa do menu */
-    background-color: var(--fundo);
-    padding: 20px;
-    box-sizing: border-box;
-    border-right: 1px solid #ddd;
-    
-    /* Se o menu tiver muitos itens, apenas ELE rola, sem afetar o resto */
-    overflow-y: auto; 
-    margin-right: 25px;
-    box-shadow: 5px 0 5px rgba(0, 0, 0, 0.20);
+    width: 260px;
+    background-color: var(--bg-panel);
+    border-right: 1px solid var(--border-color);
+    display: flex;
+    flex-direction: column;
+    transition: width 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
+    overflow: hidden;
+    position: relative;
+    z-index: 10;
 }
 
-/* Um pequeno ajuste para os links do menu não ficarem feios */
+.menu-lateral.collapsed {
+    width: 64px;
+}
+
+.sidebar-header {
+    height: 64px;
+    min-height: 64px;
+    display: flex;
+    align-items: center;
+    padding: 0 16px;
+    border-bottom: 1px solid var(--border-color);
+    justify-content: space-between;
+}
+
+.sidebar-header h1 {
+    font-size: 16px;
+    font-weight: 500;
+    color: var(--text-primary);
+    margin: 0;
+    white-space: nowrap;
+    opacity: 1;
+    transition: opacity 0.2s;
+    margin-left: 4px;
+}
+
+.menu-lateral.collapsed .sidebar-header h1 {
+    opacity: 0;
+    pointer-events: none;
+}
+
+.toggle-btn {
+    background: none;
+    border: 1px solid var(--border-color);
+    color: var(--text-secondary);
+    cursor: pointer;
+    padding: 4px;
+    display: flex;
+    align-items: center;
+    border-radius: 6px;
+    transition: 0.2s;
+    position: absolute;
+    right: 16px;
+}
+
+.toggle-btn:hover {
+    background-color: var(--bg-hover);
+    color: var(--text-primary);
+}
+
+.menu-lateral nav {
+    flex: 1;
+    padding: 16px 8px;
+    overflow-y: auto;
+}
+
+.menu-lateral nav::-webkit-scrollbar {
+    width: 4px;
+}
+
+.menu-lateral nav::-webkit-scrollbar-thumb {
+    background-color: var(--bg-hover);
+    border-radius: 4px;
+}
+
 .menu-lateral ul {
-    list-style-type: none; /* Tira as bolinhas da lista */
+    list-style-type: none;
     padding: 0;
+    margin: 0;
 }
 
 .menu-lateral li {
-    margin-bottom: 15px;
-    display: flex;
+    margin-bottom: 4px;
 }
 
 .menu-lateral a {
-    text-decoration: none; /* Tira o sublinhado */
-    color: var(--cor-fonte);
-    
+    text-decoration: none;
+    color: var(--text-secondary);
+    display: flex;
+    align-items: center;
+    padding: 8px 12px;
+    border-radius: 6px;
+    transition: all 0.2s;
+    white-space: nowrap;
+    font-size: 14px;
 }
 
 .menu-lateral a:hover {
-    transition: .2s;
-    color: black;
+    background-color: var(--bg-hover);
+    color: var(--text-primary);
 }
 
-/* Estilizando o container do calendário */
-#calendario-familia {
-    max-width: 1000px;
-    margin: 20px auto;
-    padding: 20px;
-    background-color: #ffffff;
-    border: 1px solid #e0e0e0;
-    border-radius: 8px;
-    box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+.menu-lateral a.active {
+    background-color: rgba(36, 180, 126, 0.1);
+    color: var(--accent-color);
+    font-weight: 500;
 }
 
-/* Deixando os links do cabeçalho do calendário sem sublinhado */
-.fc a {
-    text-decoration: none;
-    color: #333;
+.icon {
+    width: 18px;
+    height: 18px;
+    min-width: 18px;
+    margin-right: 12px;
+    filter: invert(0.6) sepia(0) saturate(0) hue-rotate(0) brightness(1.2); 
+    transition: margin 0.3s;
+}
+
+.menu-lateral a.active .icon {
+    filter: invert(0.5) sepia(1) saturate(5) hue-rotate(110deg) brightness(1.2); 
+}
+
+/* Hover botão de sair */
+.menu-lateral a[href*="login.html"]:hover {
+    background-color: rgba(245, 101, 101, 0.1);
+    color: var(--danger-color);
+}
+
+.menu-lateral a[href*="login.html"]:hover .icon {
+    filter: invert(40%) sepia(85%) saturate(2250%) hue-rotate(338deg) brightness(97%) contrast(92%);
+}
+
+/* Quando colapsado */
+.menu-lateral.collapsed a {
+    padding: 8px;
+    justify-content: center;
+}
+
+.menu-lateral.collapsed .icon {
+    margin-right: 0;
+}
+
+.menu-lateral.collapsed .menu-text {
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 0.1s;
+    width: 0;
+}
+
+.menu-text {
+    opacity: 1;
+    transition: opacity 0.3s 0.1s; 
+}
+
+.menu-lateral hr {
+    border: none;
+    border-top: 1px solid var(--border-color);
+    margin: 12px 8px;
+}
+
+/* Main Content Wrapper */
+.conteudo-principal {
+    flex: 1;
+    padding: 32px 48px;
+    overflow-y: auto;
+    background-color: var(--bg-main);
 }
