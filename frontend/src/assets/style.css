@@ -20,17 +20,12 @@ body, html {
     color: var(--text-primary);
 }
 
-header {
-    display: none;
-}
-
 .layout-principal {
     display: flex;
     height: 100vh;
     overflow: hidden;
 }
 
-/* Sidebar */
 .menu-lateral {
     width: 260px;
     background-color: var(--bg-panel);
@@ -98,15 +93,6 @@ header {
     overflow-y: auto;
 }
 
-.menu-lateral nav::-webkit-scrollbar {
-    width: 4px;
-}
-
-.menu-lateral nav::-webkit-scrollbar-thumb {
-    background-color: var(--bg-hover);
-    border-radius: 4px;
-}
-
 .menu-lateral ul {
     list-style-type: none;
     padding: 0;
@@ -127,6 +113,7 @@ header {
     transition: all 0.2s;
     white-space: nowrap;
     font-size: 14px;
+    cursor: pointer;
 }
 
 .menu-lateral a:hover {
@@ -153,17 +140,11 @@ header {
     filter: invert(0.5) sepia(1) saturate(5) hue-rotate(110deg) brightness(1.2); 
 }
 
-/* Hover botão de sair */
-.menu-lateral a[href*="login.html"]:hover {
+.menu-lateral a.logout:hover {
     background-color: rgba(245, 101, 101, 0.1);
     color: var(--danger-color);
 }
 
-.menu-lateral a[href*="login.html"]:hover .icon {
-    filter: invert(40%) sepia(85%) saturate(2250%) hue-rotate(338deg) brightness(97%) contrast(92%);
-}
-
-/* Quando colapsado */
 .menu-lateral.collapsed a {
     padding: 8px;
     justify-content: center;
@@ -191,10 +172,39 @@ header {
     margin: 12px 8px;
 }
 
-/* Main Content Wrapper */
 .conteudo-principal {
     flex: 1;
     padding: 32px 48px;
     overflow-y: auto;
     background-color: var(--bg-main);
+}
+
+table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 24px;
+}
+
+th, td {
+    text-align: left;
+    padding: 12px;
+    border-bottom: 1px solid var(--border-color);
+}
+
+th {
+    color: var(--text-secondary);
+    font-weight: 500;
+    font-size: 14px;
+}
+
+section {
+    background: var(--bg-panel);
+    padding: 24px;
+    border-radius: 8px;
+    border: 1px solid var(--border-color);
+    margin-bottom: 24px;
+}
+
+h2, h3 {
+    margin-top: 0;
 }
