@@ -1,36 +1,33 @@
-<script setup>
-import { ref } from 'vue'
-import Sidebar from './components/Sidebar.vue'
-
-// Navegação simplificada - apenas para testar a Sidebar
-const activeTab = ref('dashboard')
-</script>
-
 <template>
-  <div class="layout-principal">
-    <Sidebar v-model:activeTab="activeTab" />
-
-    <main class="conteudo-principal">
-      <header>
-        <h1>{{ activeTab.toUpperCase() }}</h1>
-        <p>Aguardando protótipo do Figma e integração com API.</p>
-      </header>
-      
-      <div class="placeholder-content">
-        <p>Status do Backend: Configurando...</p>
-      </div>
-    </main>
-  </div>
+  <PainelPrincipal />
 </template>
 
+<script setup>
+// Importe o PainelPrincipal apontando para a pasta correta.
+// Se a pasta 'playground' estiver dentro de 'src/components', o caminho será assim:
+import PainelPrincipal from './components/playground/PainelPrincipal.vue';
+
+/* Nota sobre os caminhos dos outros arquivos:
+  Certifique-se de que dentro do seu 'PainelPrincipal.vue', 
+  os imports estão assim (já que estão na mesma pasta):
+  import TesteCalendario from './TesteCalendario.vue';
+  import TesteEdicaoTarefas from './TesteEdicaoTarefas.vue';
+*/
+</script>
+
 <style>
-/* Seus estilos globais continuam valendo via main.js */
-.placeholder-content {
-  margin-top: 2rem;
-  padding: 2rem;
-  border: 2px dashed var(--border-color);
-  border-radius: 8px;
-  text-align: center;
-  color: var(--text-secondary);
+/* CSS Global (Opcional, mas recomendado para o tema escuro ficar perfeito) */
+body, html {
+  margin: 0;
+  padding: 0;
+  width: 100%;
+  height: 100%;
+  background-color: #0a0a0a; /* Fundo escuro base para preencher a tela toda */
+  font-family: 'Inter', sans-serif;
+}
+
+#app {
+  width: 100%;
+  min-height: 100vh;
 }
 </style>
