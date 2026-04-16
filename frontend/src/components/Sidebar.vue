@@ -51,6 +51,12 @@ const navigate = (tab) => {
           </a>
         </li>
         <li>
+          <a :class="{ active: activeTab === 'recompensas' }" @click="navigate('recompensas')">
+            <img class="icon" src="../assets/icons/trophy-solid-full.svg" alt="Recompensas">
+            <span class="menu-text">Gerenciar Recompensas</span>
+          </a>
+        </li>
+        <li>
           <a :class="{ active: activeTab === 'membros' }" @click="navigate('membros')">
             <img class="icon" src="../assets/icons/members.svg" alt="Membros">
             <span class="menu-text">Membros da Família</span>
