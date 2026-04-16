@@ -1,5 +1,7 @@
 <template>
-  <div class="painel-container">
+  <LoginView v-if="!usuarioLogado" @login-sucesso="handleLoginSucesso" />
+  
+  <div v-else class="painel-container">
     <header class="app-header">
       <div class="header-conteudo">
         <div class="logo">🏠 Meu App de Tarefas</div>
@@ -41,6 +43,7 @@
 
 <script setup>
 import { ref } from 'vue';
+import LoginView from '../LoginView.vue';
 import TesteMembrosFamilia from './TesteMembrosFamilia.vue';
 import TesteCalendario from './TesteCalendario.vue';
 import TesteEdicaoTarefas from './TesteEdicaoTarefas.vue';
@@ -51,6 +54,14 @@ const visaoAtual = ref('tarefas');
 
 // Referência para o elemento do editor
 const sessaoEditor = ref(null);
+
+// Verificar se existe sessão no localStorage
+const usuarioLogado = ref(!!localStorage.getItem('user_session'));
+
+const handleLoginSucesso = () => {
+  usuarioLogado.value = true;
+  visaoAtual.value = 'dashboard';
+};
 
 // Função que faz a rolagem suave até o editor
 function rolarParaEditor() {
