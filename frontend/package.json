@@ -12,6 +12,7 @@
     "@fullcalendar/daygrid": "^6.1.20",
     "@fullcalendar/google-calendar": "^6.1.20",
     "@fullcalendar/vue3": "^6.1.20",
+    "@supabase/supabase-js": "^2.103.2",
     "vue": "^3.5.31"
   },
   "devDependencies": {

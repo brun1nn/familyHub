@@ -1,9 +1,9 @@
 <template>
   <div v-if="visivel" class="modal-overlay" @click.self="fecharModal">
     <div class="modal-conteudo">
-      <h3>{{ editando ? 'Editar Membro' : 'Novo Membro' }}</h3>
+      <h3>{{ form.id ? 'Editar Membro' : 'Novo Membro' }}</h3>
       
-      <form @submit.prevent="salvar" class="form-membro">
+      <form @submit.prevent="handleSalvar" class="form-membro">
         <div class="grupo-form">
           <label>Nome:</label>
           <input type="text" v-model="form.nome" required placeholder="Ex: Lucas" />
@@ -36,15 +36,15 @@
 
 <script setup>
 import { reactive, watch } from 'vue';
+import { supabase } from '../../supabase'; // Verifica se o caminho está correto conforme sua estrutura
 
 const props = defineProps({
   visivel: Boolean,
-  membroEditando: Object // Se vier preenchido, é edição. Se vier nulo, é criação.
+  membroEditando: Object
 });
 
-const emit = defineEmits(['fechar', 'salvar']);
+const emit = defineEmits(['fechar', 'atualizar']);
 
-// Objeto reativo que guarda o que o usuário digita no formulário
 const form = reactive({
   id: null,
   nome: '',
@@ -52,17 +52,12 @@ const form = reactive({
   avatar: '👤'
 });
 
-// O 'watch' observa as mudanças. Quando o modal abre, preenchemos o form com os dados antigos (se houver)
+// Monitora abertura do modal para preencher o formulário
 watch(() => props.visivel, (estaVisivel) => {
   if (estaVisivel) {
     if (props.membroEditando) {
-      // Edição
-      form.id = props.membroEditando.id;
-      form.nome = props.membroEditando.nome;
-      form.papel = props.membroEditando.papel;
-      form.avatar = props.membroEditando.avatar;
+      Object.assign(form, props.membroEditando);
     } else {
-      // Novo membro
       form.id = null;
       form.nome = '';
       form.papel = 'Filho(a)';
@@ -71,17 +66,49 @@ watch(() => props.visivel, (estaVisivel) => {
   }
 });
 
-// Verifica se estamos editando ou criando
-const editando = () => form.id !== null;
-
 function fecharModal() {
   emit('fechar');
 }
 
-function salvar() {
-  // Envia os dados preenchidos para o componente pai
-  emit('salvar', { ...form });
-  fecharModal();
+// FUNÇÃO QUE SALVA NO SUPABASE
+async function handleSalvar() {
+  try {
+    if (form.id) {
+      // Lógica de ATUALIZAÇÃO (Update)
+      const { error } = await supabase
+        .from('membros')
+        .update({
+          nome: form.nome,
+          papel: form.papel,
+          avatar: form.avatar
+        })
+        .eq('id', form.id);
+
+      if (error) throw error;
+    } else {
+      // Lógica de CRIAÇÃO (Insert)
+      const { error } = await supabase
+        .from('membros')
+        .insert([
+          { 
+            nome: form.nome, 
+            papel: form.papel, 
+            avatar: form.avatar,
+            pontos: 0,
+            nivel: 1,
+            progresso: 0
+          }
+        ]);
+
+      if (error) throw error;
+    }
+
+    // Se deu tudo certo, avisa o pai para recarregar a lista e fecha
+    emit('atualizar'); 
+    fecharModal();
+  } catch (error) {
+    alert('Erro ao salvar no banco: ' + error.message);
+  }
 }
 </script>
 
@@ -106,25 +133,33 @@ function salvar() {
   color: white;
 }
 
-h3 { margin-top: 0; margin-bottom: 20px; }
+h3 { margin-top: 0; margin-bottom: 20px; font-family: sans-serif; }
 
 .form-membro { display: flex; flex-direction: column; gap: 15px; }
 .grupo-form { display: flex; flex-direction: column; gap: 5px; }
 
-label { font-size: 0.9rem; color: #bbb; }
+label { font-size: 0.9rem; color: #bbb; text-align: left; }
+
 input, select {
   background: rgba(255, 255, 255, 0.05);
   border: 1px solid rgba(255, 255, 255, 0.1);
   color: white;
-  padding: 10px;
+  padding: 12px;
   border-radius: 8px;
   font-family: inherit;
+  outline: none;
+}
+
+input:focus, select:focus {
+  border-color: #56d364;
 }
 
 .botoes-modal { display: flex; justify-content: flex-end; gap: 10px; margin-top: 10px; }
-button { padding: 10px 15px; border-radius: 8px; font-weight: bold; cursor: pointer; border: none; }
+button { padding: 10px 20px; border-radius: 8px; font-weight: bold; cursor: pointer; border: none; transition: 0.2s; }
+
 .btn-cancelar { background: transparent; color: #bbb; }
 .btn-cancelar:hover { color: white; background: rgba(255, 255, 255, 0.1); }
+
 .btn-salvar { background: #56d364; color: black; }
-.btn-salvar:hover { background: #46b352; }
+.btn-salvar:hover { background: #46b352; transform: translateY(-2px); }
 </style>
